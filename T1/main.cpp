@@ -95,42 +95,46 @@ int main()
     }
 
     char resposta;
-
+    system("cls");
     for (int i = 0; i < n_jogadores; i++)
     {
-        system("cls");
         print_mao(player[i], 2);
-        cout << "Player " << player[i].nome << " ao terminar pressione qualquer tecla, em seguida 'enter' " << endl;
-        cin >> resposta; 
-    }
-
-
-    while (player[n_jogadores-1].total < 17)
-    {
-        for (int i = 0; player[i].total < 21 && player[i].acao != 'p' && i < n_jogadores; i++)
+        if (i == n_jogadores - 1)
         {
-            print_mao(player[i], 3);
-            cout << player[i].nome << "deseja para(p) ou comprar(c): ";  
-            cin >> player[i].acao;
-            if (player[i].acao == 'c')
-            {
-                
-            }
-            
+            cout << "Esta e a mao do dealer, " << " ao terminar de ver pressione qualquer tecla, em seguida 'enter' " << endl;
+            cin >> resposta;
         }
-        
+
+        else{
+            cout << "Player " << player[i].nome << ", ao terminar pressione qualquer tecla, em seguida 'enter' " << endl;
+            cin >> resposta; 
+        }
+        system("cls");
     }
+
+    // Loop para permitir que os jogadores comprem mais cartas ou parem
+    for (int i = 0; i < n_jogadores - 1; i++) {
+        while (player[i].total <= 21 && desejaComprarMais(player[i]) == true) {
+            compra(deck, &player[i], i);
+            deck = pop(deck);
+        }
+    }
+
+    compra(deck, &player[n_jogadores-1], n_jogadores-1);
     
-
+    system("cls");
     
-
-
-
-
-
-
-
-    
-    
-    
-}
+    for (int i = 0; i < n_jogadores - 1; i++)
+    {
+        
+        cout << "Dealer: " << player[n_jogadores-1].total << endl << endl << player[i].nome << ": " << player[i].total << endl << endl;
+        if (player[i].total > 21) {
+            cout << player[i].nome << " ultrapassou 21 e perdeu!" << endl << endl << "                 -----------------------------" << endl;
+        }
+        else if(player[i].total < player[n_jogadores-1].total){
+            cout << player[i].nome << " nao alcancou o valor minimo e perdeu!" << endl << endl << "                 -----------------------------" << endl;
+        }
+        else{
+            cout << "Parabens!" << endl << endl << "                 -----------------------------" << endl;
+        }
+    }
