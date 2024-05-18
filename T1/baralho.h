@@ -78,3 +78,10 @@ void print_mao(jogador j, int size)
 	cout << "total: " << j.total << endl << endl;
     
 }
+
+bool desejaComprarMais(jogador& player) {
+    char resposta;
+    cout << player.nome << ", deseja comprar mais uma carta? (s/n): ";
+    cin >> resposta;
+    return resposta == 's' || resposta == 'S';
+}
