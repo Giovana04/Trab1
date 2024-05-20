@@ -17,6 +17,7 @@ int main()
 
     inicializaLista(deck);
 
+    //inicializa os jogadores
     int n_jogadores;
     cout << "Quantidade de jogadores? ";
     cin >> n_jogadores;
@@ -34,6 +35,7 @@ int main()
         player[i].perdas = 0;
     }
 
+    //Reseta os valores e os naipes dos jogadores
     limpa_mao(player, n_jogadores);
 
     // gera as cartas
@@ -66,6 +68,7 @@ int main()
         }
     }
 
+    //mantem o jogo a quantidade de vezes que quiser
     while(jogar == true){
 
         system("cls");
@@ -86,14 +89,16 @@ int main()
             cartas[rand2].valor = temp;
         }
 
+        //coloca na pilha deck
         for (int i = 0; i < 52; i++)
         {
             deck = PUSH(deck, cartas[i].valor, cartas[i].naipe);
         }    
 
+        //limpa a mão cada inicio de jogo
         limpa_mao(player, n_jogadores);
         
-
+        //cada jogador compra duas cartas do deck 
         for (int i = 0; i < 2; i++)
         {
             int nj = n_jogadores;
@@ -105,8 +110,9 @@ int main()
         }
 
         char resposta;
-
         system("cls");
+
+        //mostra as cartas
         for (int i = 0; i < n_jogadores; i++)
         {
             
@@ -125,7 +131,7 @@ int main()
             system("cls");
         }
 
-        // Loop para permitir que os jogadores comprem mais cartas ou parem
+        // Loop para que os jogadores comprem mais cartas ou parem
         for (int i = 0; i < n_jogadores - 1; i++) {
             int j = 0;
             system("cls");
@@ -139,6 +145,7 @@ int main()
             }
         }
 
+        //Lógica de compras do Dealer
         if (player[n_jogadores-1].total < 17)
         {
             if (player[n_jogadores-1].total < 10)
@@ -153,6 +160,7 @@ int main()
         
         system("cls");
 
+        //vitórias e derrotas
         for (int i = 0; i < n_jogadores - 1; i++)
         {
 
@@ -171,6 +179,7 @@ int main()
             }
         }
 
+        //Mostra a mão do Dealer
         cout << "Mao do Dealer: " << endl << endl;
         int i = 0;
         do
@@ -180,13 +189,14 @@ int main()
         } while (player[n_jogadores-1].mao[i].valor != 0);
         
         
-
+        //Mostra o placar
         cout << endl << "Placar! " << endl << endl;
         for (int i = 0; i < n_jogadores - 1; i++)
         {
             cout << player[i].nome << endl << "Vitorias: " << player[i].vitorias << endl <<  "Derrotas: " << player[i].perdas << endl << endl;
         }
 
+        //Reinicia o jogo ou o encerra;
         char jo;
         cout << " Deseja jogar de novo? (s/n) ";
         cin >> jo;
