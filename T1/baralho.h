@@ -14,6 +14,8 @@ struct jogador
 	carta mao[22];
 	int total;
 	string nome;
+	int vitorias;
+	int perdas;
 };
 struct baralho
 {
@@ -50,6 +52,7 @@ baralho *pop(baralho *l)
 	}
 	return(l);		
 }
+
 void puts(baralho* dek) {
 	baralho *P;
 	P = dek;
