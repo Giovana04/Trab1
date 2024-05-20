@@ -34,6 +34,8 @@ int main()
         player[i].perdas = 0;
     }
 
+    limpa_mao(player, n_jogadores);
+
     // gera as cartas
     for (int i = 0; i < 4; i++)
     {
@@ -89,15 +91,7 @@ int main()
             deck = PUSH(deck, cartas[i].valor, cartas[i].naipe);
         }    
 
-        for (int i = 0; i < n_jogadores; i++)
-        {
-            for (int j = 0; j < 22; j++)
-            {
-                player[i].mao[j].valor = 0;
-                player[i].mao[j].naipe = '0';
-                player[i].total = 0;
-            }
-        }
+        limpa_mao(player, n_jogadores);
         
 
         for (int i = 0; i < 2; i++)
@@ -149,9 +143,12 @@ int main()
         {
             if (player[n_jogadores-1].total < 10)
             {
-                compra(deck, &player[n_jogadores-1], n_jogadores-1);
+                compra(deck, &player[n_jogadores-1], 2);
+                compra(deck, &player[n_jogadores-1], 3);
             }
-            compra(deck, &player[n_jogadores-1], n_jogadores-1);
+            else{
+                compra(deck, &player[n_jogadores-1], 2);
+            }
         }
         
         system("cls");
@@ -176,14 +173,15 @@ int main()
 
         cout << "Mao do Dealer: " << endl << endl;
         int i = 0;
-        while (player[n_jogadores-1].mao[i].valor != 0;)
+        do
         {
-            print_mao(player[n_jogadores-1], 0+i);
-        }
+            cout << player[n_jogadores-1].mao[i].valor << player[n_jogadores-1].mao[i].naipe << endl;
+            i++;
+        } while (player[n_jogadores-1].mao[i].valor != 0);
         
         
 
-        cout << "Placar! " << endl << endl;
+        cout << endl << "Placar! " << endl << endl;
         for (int i = 0; i < n_jogadores - 1; i++)
         {
             cout << player[i].nome << endl << "Vitorias: " << player[i].vitorias << endl <<  "Derrotas: " << player[i].perdas << endl << endl;
