@@ -88,3 +88,15 @@ bool desejaComprarMais(jogador& player) {
     cin >> resposta;
     return resposta == 's' || resposta == 'S';
 }
+
+void limpa_mao(jogador player[], int n_jogadores){
+	for (int i = 0; i < n_jogadores; i++)
+        {
+            for (int j = 0; j < 22; j++)
+            {
+                player[i].mao[j].valor = 0;
+                player[i].mao[j].naipe = '0';
+                player[i].total = 0;
+            }
+        }
+}
