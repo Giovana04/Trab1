@@ -174,6 +174,11 @@ int main()
                 cout << player[i].nome << " nao alcancou o valor minimo e perdeu!" << endl << endl << "                 -----------------------------" << endl;
             }
             else{
+                if (player[i].total == 21)
+                {
+                    player[i].vitorias += 1;
+                }
+                
                 player[i].vitorias += 1;
                 cout << "Parabens!" << endl << endl << "                 -----------------------------" << endl << endl;
             }
