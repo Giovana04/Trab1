@@ -105,7 +105,7 @@ int main()
             while (nj--)
             {
                 compra(deck, &player[nj], i);
-                deck = pop(deck);    
+                deck = POP(deck);    
             }    
         }
 
@@ -141,7 +141,7 @@ int main()
                 j++;
                 compra(deck, &player[i], 1+j);
                 print_mao(player[i], 2+j);
-                deck = pop(deck);
+                deck = POP(deck);
             }
         }
 
@@ -151,10 +151,13 @@ int main()
             if (player[n_jogadores-1].total < 10)
             {
                 compra(deck, &player[n_jogadores-1], 2);
+                deck = POP(deck);
                 compra(deck, &player[n_jogadores-1], 3);
+                deck = POP(deck);
             }
             else{
                 compra(deck, &player[n_jogadores-1], 2);
+                deck = POP(deck);
             }
         }
         
